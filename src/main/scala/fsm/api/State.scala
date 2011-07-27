@@ -8,6 +8,4 @@ package fsm.api
  * To change this template use File | Settings | File Templates.
  */
 
-case class State (name:String){
-
-}
+case class State (name:String, action:List[String], transitions:List[Transition])

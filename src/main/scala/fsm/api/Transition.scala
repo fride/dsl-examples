@@ -8,6 +8,6 @@ package fsm.api
  * To change this template use File | Settings | File Templates.
  */
 
-case class Transition(source:State, target:State, trigger:String) {
+case class Transition(target:String, trigger:String) {
 
 }
