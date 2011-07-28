@@ -2,10 +2,18 @@ package fsm.dsl
 
 import collection.immutable.Nil
 import collection.mutable.ListBuffer
-import fsm.api.{Transition, State}
+import fsm.api.{StateMachine, Transition, State}
 
 object FsmDsl {
 
+  implicit def fsmBuilder2Fsm(fsm:Fsm) = {
+      StateMachine(
+        states = fsm.states.map(_.toState)
+        , transitions = Nil
+        , startState = fsm.states.last.toState
+        , finishStates = Nil
+        )
+  }
 
   class Fsm {
 
@@ -16,7 +24,7 @@ object FsmDsl {
       }
     }
 
-    private var states:List[StateHelper] = Nil
+    private[FsmDsl] var states:List[StateHelper] = Nil
 
     //implicit def stringToTransitionHelper(str:String) = new TransitionHelper(str)
 
@@ -68,7 +76,6 @@ object FsmDsl {
       println("state made!" + helper.toString)
       helper.toState
     }
-
     override def toString = states.map(_.toString).toString()
   }
 
