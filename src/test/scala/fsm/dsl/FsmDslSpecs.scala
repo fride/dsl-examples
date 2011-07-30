@@ -8,12 +8,14 @@ import fsm.api.StateMachine
 class FsmDslSpecs extends FlatSpec with ShouldMatchers  {
 
   val fsm = new Fsm {
-       state("1stState") {
+
+    state("1stState") {
          transitions := {
            "2" ==> "2ndState"
          }
        }
-      state("2ndState") {
+
+    state("2ndState") {
          transitions := {
            "1" ==> "1stState"
          }

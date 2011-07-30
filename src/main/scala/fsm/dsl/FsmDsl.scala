@@ -40,7 +40,7 @@ object FsmDsl {
 
     object resetEvents {
       def := (events:String*) = {
-        // TODO
+
       }
     }
     object transitions {
