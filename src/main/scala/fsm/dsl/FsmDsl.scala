@@ -7,11 +7,10 @@ import fsm.api.{StateMachine, Transition, State}
 object FsmDsl {
 
   implicit def fsmBuilder2Fsm(fsm:Fsm) = {
+      val s = fsm.states.map(_.toState)
       StateMachine(
-        states = fsm.states.map(_.toState)
-        , transitions = Nil
-        , startState = fsm.states.last.toState
-        , finishStates = Nil
+        states = s
+        , current = Some(s head)
         )
   }
 

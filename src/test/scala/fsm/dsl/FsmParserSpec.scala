@@ -3,6 +3,7 @@ package fsm.dsl
 import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
 import fsm.parser.{FsmDslParer}
+import fsm.api.{State, Transition, StateMachine}
 
 /**
  * Created by IntelliJ IDEA.
@@ -59,6 +60,6 @@ end
 
   "The Parse" should  "parse the fowler DSL example" in {
     println(this.dslText)
-   println(FsmDslParer.parse(this.dslText))
+    println(FsmDslParer.parse(this.dslText))
   }
 }
