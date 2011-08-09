@@ -19,7 +19,7 @@ trait FSM[ST,E] extends PartialFunction[E,ST] {
   private val transitions:Map[ST,StateFunction] = Map()
   private var terminalStates:Set[ST] = Set()
   private var transitionHandler:TransitionHandler = {
-    case (from, to) => println("TRansition from " + from + " => " + to)
+    case (from, to) => println("Transition from " + from + " => " + to)
   }
 
   def terminated = {
@@ -53,10 +53,13 @@ trait FSM[ST,E] extends PartialFunction[E,ST] {
   }
 
   private def nextState(e: E): Option[ST] = {
-    val nextState = for (state <- currentState;
+    for (state <- currentState;
                          transition <- transitions.get(state);
-                         if transition.isDefinedAt(e)) yield (transition(e))
-    nextState
+                         if transition.isDefinedAt(e)) yield {
+      val n = transition(e)
+      transitionHandler((state,n))
+      n
+    }
   }
 
   /**
@@ -72,9 +75,11 @@ trait FSM[ST,E] extends PartialFunction[E,ST] {
     }
   }
 
+
   def onTransition(fun:TransitionHandler) = {
     this.transitionHandler = fun
   }
+
   protected def enterState(st:ST) = {
     currentState = Some(st)
   }
