@@ -1,7 +1,6 @@
 package fsm.api
 
 import java.io.StringWriter
-import scalaz.StreamT.Yield
 
 /**
  *
