@@ -8,9 +8,8 @@ version := "0.1"
 
 scalaVersion := "2.9.0"
 
-resolvers += {
-  val typesafeRepoUrl = new java.net.URL("http://repo.typesafe.com/typesafe/releases")
-  val pattern = Patterns(false, "[organisation]/[module]/[sbtversion]/[revision]/[type]s/[module](-[classifier])-[revision].[ext]")
-  Resolver.url("Typesafe Repository", typesafeRepoUrl)(pattern)
-}
+libraryDependencies ++= Seq(
+    "org.scalatest" %% "scalatest" % "1.6.1"
+    , "org.scalaz" % "scalaz-core_2.9.0-1" % "6.0.1"
+)
 
