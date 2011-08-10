@@ -2,7 +2,7 @@
 
 scalaVersion := "2.9.0"
 
-name := "fsm"
+name := "dsl-examples"
 
 version := "0.1"
 
