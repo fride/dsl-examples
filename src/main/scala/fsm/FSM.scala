@@ -46,7 +46,7 @@ trait FSM[ST,E] extends PartialFunction[E,ST] {
   /**
    * What to do in a given state
    * @param state the state
-   * @oaram fun The transition.
+   * @param fun The transition.
    */
   def in(state:ST)(fun:StateFunction) =  {
     transitions.put(state,fun)
