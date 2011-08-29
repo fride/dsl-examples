@@ -3,8 +3,6 @@ In Scala geschrieben DSLs.
 Scala erlaubt dies aufgrund seiner flexiblen Syntax
 
 
-
-
 Warum in Scala und nicht in Groovy
 - Typsicher
 - Performance (Ja auch Groovy++)
@@ -15,3 +13,7 @@ Warum in Scala und nicht XText
 - Keine Codegenerierung nötig. Die DSL wird mit den Scala Bordmitteln direckt in Scalaobjekte transformiert.
 - Patternmatching erlaubt es auf Bäumen von aussen zu operieren (Visitor Pattern auf wiedersehen!)
 
+=======
+Beispiele für DSLs in Scala
+
+- die altbekannte Zustandsmachine FSM
