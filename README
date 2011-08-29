@@ -1,1 +1,17 @@
-TODO
+In Scala geschrieben DSLs.
+
+Scala erlaubt dies aufgrund seiner flexiblen Syntax
+
+
+
+
+Warum in Scala und nicht in Groovy
+- Typsicher
+- Performance (Ja auch Groovy++)
+
+Warum in Scala und nicht XText
+- Interne DSLs sind in XText nicht möglich
+- Externe DSLs sind in Scala dank Paraser Combinators "einfach". Es wird kein schwergewichtiges Tool wie Eclipse benötigt.
+- Keine Codegenerierung nötig. Die DSL wird mit den Scala Bordmitteln direckt in Scalaobjekte transformiert.
+- Patternmatching erlaubt es auf Bäumen von aussen zu operieren (Visitor Pattern auf wiedersehen!)
+

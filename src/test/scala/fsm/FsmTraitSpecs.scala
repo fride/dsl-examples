@@ -33,7 +33,7 @@ class FsmTraitSpecs extends FlatSpec with ShouldMatchers  {
     startWith(START)
   }
 
-  "The example DSL shoul" should "Accecpt \"JAN\"" in {
+  "The example DSL should" should "accept \"JAN\"" in {
     val fsm = new ExampleFsm()
     fsm.onEvent("J")
     fsm.onEvent("A")

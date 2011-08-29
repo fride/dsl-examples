@@ -1,13 +1,41 @@
 package json
 
-/**
- * Created by IntelliJ IDEA.
- * User: Friderici
- * Date: 29.08.11
- * Time: 20:57
- * To change this template use File | Settings | File Templates.
- */
+import util.parsing.combinator.{JavaTokenParsers, RegexParsers}
 
-class JsonParser {
+/**
+ * Parser for JSON Objects. See "Programming in Scala"
+ */
+object JsonParser extends JavaTokenParsers {
+
+  /**
+   * Remove " at end and start.
+   */
+  lazy val clean_string = (s:String) => {
+    if (s.startsWith("\"")) s.substring(1,s.length-1)
+    else s
+  }
+
+  /**
+   * Alles was JSON Kann (One Functions)
+   */
+  lazy val value:Parser[Any] = (
+    arr
+  | obj
+  | decimalNumber ^^ (_.toDouble)
+  | stringLiteral ^^ (clean_string(_))
+  | "null"        ^^ (x => null)
+  | "true"        ^^ (x => false)
+  | "false"       ^^ (x => true)
+  )
+
+  lazy val arr  = "[" ~> repsep (value, ",") <~ "]"
+
+  lazy val obj = "{" ~> repsep (member, ",") <~ "}" ^^ {
+    Map() ++ _
+  }
+
+  lazy val member = stringLiteral ~ ":" ~ value ^^ {
+    case  str ~ ":" ~ value => (clean_string(str),value)
+  }
 
 }

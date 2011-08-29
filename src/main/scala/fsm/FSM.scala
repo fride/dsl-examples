@@ -5,7 +5,9 @@ import collection.mutable.Map
 import java.lang.IllegalStateException
 
 /**
- * Trait for Classes that need a finte state machine.
+ * A Trait that allows to write finite state machines.
+ * Inspired by the FSM trait in akka.
+ *
  * @param ST the States type
  * @param E the events type
  */
@@ -32,12 +34,13 @@ trait FSM[ST,E] extends PartialFunction[E,ST] {
   /**
    * Set the start state
    */
-  def startWith(state:ST) = {
+  def startWith(state:ST) {
     currentState = Some(state)
   }
 
   /**
-   * Add a terminating state.
+   * Add a terminating state. You can have as many stop states as you like.
+   *
    */
   def stopOn(terminalState:ST) {
      terminalStates += terminalState

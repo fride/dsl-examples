@@ -5,7 +5,7 @@ import fsm.api.{StateMachine, State, Transition}
 
 object FsmDslParer extends JavaTokenParsers with PackratParsers {
 
-  lazy val fsm:PackratParser[Any]         = events ~ resetEvents ~ commands ~ states ^^
+  lazy val fsm:PackratParser[StateMachine]  = events ~ resetEvents ~ commands ~ states ^^
     { case events ~ resetEvents ~ commands ~ s => StateMachine (s, Some( s.head)) }
 
   lazy val states:PackratParser[List[State]] = rep(state)
@@ -20,8 +20,8 @@ object FsmDslParer extends JavaTokenParsers with PackratParsers {
   lazy val commands:PackratParser[Any]    = "commands" ~> rep(nameAndId) <~ "end"
 
   lazy val state:PackratParser[State]       = "state" ~> name ~ opt(actions) ~ transitions <~ "end" ^^
-    { case name ~ Some(actions) ~transitions => State(name,actions,transitions)
-      case name ~ None ~transitions => State(name,Nil, transitions)
+    { case name ~ Some(actions) ~ transitions => State(name,actions,transitions)
+      case name ~ None ~ transitions => State(name,Nil, transitions)
     }
 
   lazy val actions:PackratParser[List[String]]  = "actions" ~> "{" ~> repsep(name, ",") <~ "}"
