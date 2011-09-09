@@ -17,7 +17,8 @@ class JsonParserSpecification extends Specification {
     {
         "name": "Jan Friderici",
         "email": ["jan.friderici@itemis.de", "friderici@itemis.de", "janfriderici@googlemail.com"],
-        "occupuation": "Developer"
+        "occupuation": "Developer",
+        "knowsJava": true
       }
     ]
   }
@@ -31,7 +32,8 @@ class JsonParserSpecification extends Specification {
             Map (
 	          "name" -> "Jan Friderici",
 	          "email"->  List("jan.friderici@itemis.de", "friderici@itemis.de", "janfriderici@googlemail.com"),
-	          "occupuation" -> "Developer")))
+	          "occupuation" -> "Developer",
+            "knowsJava" -> true)))
     }
   }
 }

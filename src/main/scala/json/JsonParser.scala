@@ -14,18 +14,14 @@ object JsonParser extends JavaTokenParsers {
     if (s.startsWith("\"")) s.substring(1,s.length-1)
     else s
   }
-
-  /**
-   * Alles was JSON Kann (One Functions)
-   */
   lazy val value:Parser[Any] = (
     arr
   | obj
   | decimalNumber ^^ (_.toDouble)
   | stringLiteral ^^ (clean_string(_))
   | "null"        ^^ (x => null)
-  | "true"        ^^ (x => false)
-  | "false"       ^^ (x => true)
+  | "true"        ^^ (x => true)
+  | "false"       ^^ (x => false)
   )
 
   lazy val arr  = "[" ~> repsep (value, ",") <~ "]"
@@ -37,5 +33,4 @@ object JsonParser extends JavaTokenParsers {
   lazy val member = stringLiteral ~ ":" ~ value ^^ {
     case  str ~ ":" ~ value => (clean_string(str),value)
   }
-
 }

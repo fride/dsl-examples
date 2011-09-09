@@ -15,6 +15,7 @@ libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "1.6.1"
     , "org.scalaz" % "scalaz-core_2.9.0-1" % "6.0.1"
     , "org.specs2" %% "specs2" % "1.5"
+    , "org.neo4j" % "neo4j" % "1.4.M06"
     , "org.specs2" %% "specs2-scalaz-core" % "6.0.RC2" % "test")
 
 //testListeners += customTestListener
